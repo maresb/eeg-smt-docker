@@ -2,6 +2,7 @@ import argparse
 import socket
 from datetime import datetime
 from pathlib import Path
+from time import sleep
 
 import cv2
 import numpy as np
@@ -45,6 +46,8 @@ print("Opening window...")
 cv2.imshow("image", image)
 print("Window opened.", flush=True)
 
+# Wait to make sure modeegdriver is fully initialized
+sleep(0.5)
 
 print(f"Connecting to {args.host}:{args.port}...")
 with socket.create_connection((args.host, args.port)) as sock:
