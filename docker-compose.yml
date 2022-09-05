@@ -2,6 +2,7 @@ version: "3.9"
 services:
 
   nsd-service:
+    image: ghcr.io/maresb/eeg-smt-docker:nsd-latest
     build:
       context: .
       target: nsd-target
@@ -10,6 +11,7 @@ services:
     command: nsd
 
   modeegdriver-service:
+    image: ghcr.io/maresb/eeg-smt-docker:modeegdriver-latest
     build:
       context: .
       target: modeegdriver-target
@@ -20,6 +22,7 @@ services:
     command: run-modeegdriver.sh /dev/ttyUSB0 nsd-service 8336
 
   plot-service:
+    image: ghcr.io/maresb/eeg-smt-docker:plot-latest
     build:
       context: .
       target: plot-target
