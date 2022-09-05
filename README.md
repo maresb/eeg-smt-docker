@@ -28,12 +28,6 @@ to stop the NeuroServer daemon and EEG driver.
 
 ## Troubleshooting
 
-In case of problems, check
-
-```bash
-MY_UID="$(id -u)" docker-compose logs -f
-```
-
 If you see a bunch of stuff like
 
 ```log
@@ -49,7 +43,7 @@ eeg-smt-modeegdriver-service-1  | P3 sync error:i=0,j=1,c=141.
 then run
 
 ```bash
-MY_UID="$(id -u)" docker-compose down
+docker-compose down
 ```
 
 and try again.
