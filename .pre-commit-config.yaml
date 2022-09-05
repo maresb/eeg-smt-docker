@@ -1,6 +1,8 @@
 # This is for the "pre-commit" tool, which enforces checks before local commits are allowed.
 # <https://pre-commit.com/>
 
+exclude: '^NeuroServer-'
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v3.2.0
