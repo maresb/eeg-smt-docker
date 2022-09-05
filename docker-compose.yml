@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+
+  nsd-service:
+    build:
+      context: .
+      target: nsd-target
+    ports:
+      - "127.0.0.1:8336:8336"
+    command: nsd
+
+  modeegdriver-service:
+    build:
+      context: .
+      target: modeegdriver-target
+    depends_on:
+      - nsd-service
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    command: run-modeegdriver.sh /dev/ttyUSB0 nsd-service 8336
+
+  plot-service:
+    build:
+      context: .
+      target: plot-target
+    depends_on:
+      - modeegdriver-service
+    user: "${MY_UID}:${MY_GID}"
+    env_file:
+      - .env
+    environment:
+      # - XAUTHORITY=/tmp/.Xauthority  # Destination mount point for local Xauthority
+      - DISPLAY  # Typically :0
+    devices:
+      - "/dev/dri:/dev/dri"
+    volumes:
+      # - "${XAUTHORITY}:/tmp/.Xauthority"
+      # Subdirectory for storing plots
+      - "${LOCAL_WORKSPACE_FOLDER:-.}/images:/usr/src/images/"
+    # This is to faciliate access to the X server:
+    network_mode: host
+    # ipc: host
+    command: python plot.py --save-to=images/

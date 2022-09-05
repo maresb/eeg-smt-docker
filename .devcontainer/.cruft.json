@@ -1,0 +1,15 @@
+{
+  "template": "https://gitlab.com/bmares/cookiecutter-micromamba-devcontainer",
+  "commit": "f8dd478386eeceb4559821ded29055ae79aac23a",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "package_name": "eeg-smt",
+      "python_version": "3.10",
+      "timezone": "Europe/Berlin",
+      "packages_dir": "pkg",
+      "_template": "https://gitlab.com/bmares/cookiecutter-micromamba-devcontainer"
+    }
+  },
+  "directory": null
+}

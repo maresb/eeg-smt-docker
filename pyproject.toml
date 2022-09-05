@@ -1,0 +1,19 @@
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "eeg-smt"
+version = "1.0.0"
+description = "Plot data from the EEG-SMT"
+authors = ["Ben Mares <services-eeg-smt@tensorial.com>"]
+license = "MIT"
+packages = [
+    { include = "eeg_smt", from = "pkg" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10, <3.11"
+
+[tool.poetry.scripts]
+example-hello-world = "eeg_smt.main:hello"
